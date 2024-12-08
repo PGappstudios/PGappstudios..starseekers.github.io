@@ -74,15 +74,11 @@
             transition: transform 0.5s ease-in-out;
         }
         .carousel img {
-            width: 14%;
+            width: 17.5%; /* Original 14% increased by 25% */
             height: auto;
             border-radius: 10px;
-            opacity: 0.7;
+            opacity: 0.9; /* Slightly highlighted */
             transition: all 0.5s ease;
-        }
-        .carousel img.center {
-            transform: scale(1.75);
-            opacity: 1;
         }
         .carousel-buttons {
             position: absolute;
@@ -159,7 +155,7 @@
     <h2>App Screenshots</h2>
     <div class="carousel-container">
         <div class="carousel">
-            <img src="1.jpg" alt="Screenshot 1" class="center">
+            <img src="1.jpg" alt="Screenshot 1">
             <img src="2.jpg" alt="Screenshot 2">
             <img src="3.jpg" alt="Screenshot 3">
             <img src="4.jpg" alt="Screenshot 4">
@@ -205,19 +201,9 @@
     const carousel = document.querySelector('.carousel');
     const slides = document.querySelectorAll('.carousel img');
 
-    function updateCenterImage() {
-        slides.forEach((img, index) => {
-            img.classList.remove('center');
-            if (index === currentIndex) {
-                img.classList.add('center');
-            }
-        });
-    }
-
     function showSlide(index) {
         const slideWidth = slides[0].clientWidth;
         carousel.style.transform = `translateX(${-slideWidth * index}px)`;
-        updateCenterImage();
     }
 
     function nextSlide() {
@@ -231,8 +217,9 @@
     }
 
     window.addEventListener('resize', () => showSlide(currentIndex));
-    updateCenterImage(); // Initialize center image on load
+    showSlide(currentIndex); // Initialize carousel position
 </script>
 
 </body>
 </html>
+
