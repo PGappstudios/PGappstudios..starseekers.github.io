@@ -74,11 +74,10 @@
             transition: transform 0.5s ease-in-out;
         }
         .carousel img {
-            width: 17.5%; /* Original 14% increased by 25% */
+            width: 125%; /* Increased by 25% */
+            flex-shrink: 0;
             height: auto;
             border-radius: 10px;
-            opacity: 0.9; /* Slightly highlighted */
-            transition: all 0.5s ease;
         }
         .carousel-buttons {
             position: absolute;
@@ -160,6 +159,7 @@
             <img src="3.jpg" alt="Screenshot 3">
             <img src="4.jpg" alt="Screenshot 4">
             <img src="5.jpg" alt="Screenshot 5">
+            <img src="6.jpg" alt="Screenshot 6">
             <img src="7.jpg" alt="Screenshot 7">
             <img src="8.jpg" alt="Screenshot 8">
             <img src="89.jpg" alt="Screenshot 9">
@@ -201,7 +201,7 @@
     const slides = document.querySelectorAll('.carousel img');
 
     function showSlide(index) {
-        const slideWidth = slides[0].clientWidth;
+        const slideWidth = carousel.clientWidth;
         carousel.style.transform = `translateX(${-slideWidth * index}px)`;
     }
 
@@ -216,9 +216,8 @@
     }
 
     window.addEventListener('resize', () => showSlide(currentIndex));
-    showSlide(currentIndex); // Initialize carousel position
+    showSlide(currentIndex); // Initialize carousel
 </script>
 
 </body>
 </html>
-
