@@ -74,9 +74,15 @@
             transition: transform 0.5s ease-in-out;
         }
         .carousel img {
-            width: 14%; /* Increased size from 10% to 14% */
+            width: 14%;
             height: auto;
             border-radius: 10px;
+            opacity: 0.7; /* Dim non-centered images */
+            transition: all 0.5s ease;
+        }
+        .carousel img.center {
+            transform: scale(1.75); /* Increase size by 75% for the center image */
+            opacity: 1; /* Highlight the center image */
         }
         .carousel-buttons {
             position: absolute;
@@ -143,50 +149,20 @@
         Welcome to <strong>Star Seekers</strong>, a multi-mini-game app designed to inspire curiosity and fun! Dive into the wonders of the universe with interactive star maps, challenging puzzles, and educational content. Whether you're a stargazing enthusiast or just looking for some cosmic fun, Star Seekers has something for everyone.
     </p>
 
-    <h2>Features</h2>
-    <ul>
-        <li>🌌 Explore constellations with a detailed star atlas.</li>
-        <li>🧩 Play engaging mini-games and test your skills.</li>
-        <li>📚 Learn fascinating facts about the universe.</li>
-    </ul>
-
     <h2>App Screenshots</h2>
     <div class="carousel-container">
         <div class="carousel">
-            <img src="1.jpg" alt="Screenshot 1">
+            <img src="1.jpg" alt="Screenshot 1" class="center">
             <img src="2.jpg" alt="Screenshot 2">
             <img src="3.jpg" alt="Screenshot 3">
             <img src="4.jpg" alt="Screenshot 4">
-            <img src="4544444.jpg" alt="Screenshot 5">
-            <img src="45646.jpg" alt="Screenshot 6">
-            <img src="5.jpg" alt="Screenshot 7">
-            <img src="5646.jpg" alt="Screenshot 8">
-            <img src="56565.jpg" alt="Screenshot 9">
-            <img src="6.jpg" alt="Screenshot 10">
-            <img src="6456.jpg" alt="Screenshot 11">
-            <img src="7.jpg" alt="Screenshot 12">
-            <img src="787.jpg" alt="Screenshot 13">
-            <img src="8.jpg" alt="Screenshot 14">
-            <img src="89.jpg" alt="Screenshot 15">
+            <img src="5.jpg" alt="Screenshot 5">
         </div>
         <div class="carousel-buttons">
             <button onclick="prevSlide()">&#10094;</button>
             <button onclick="nextSlide()">&#10095;</button>
         </div>
     </div>
-
-    <h2>Contact Us</h2>
-    <p>
-        📧 Email: <a href="mailto:pgmetastudios@gmail.com">pgmetastudios@gmail.com</a>
-    </p>
-
-    <h2>Links</h2>
-    <p>
-        <a href="https://www.termsfeed.com/live/1a4f410f-4566-4032-a4c1-222264b4b8e5" target="_blank">Terms of Service</a>
-    </p>
-    <p>
-        <a href="https://app.websitepolicies.com/policies/view/x5olsnwk" target="_blank">Privacy Policy</a>
-    </p>
 </main>
 
 <footer>
@@ -199,9 +175,19 @@
     const carousel = document.querySelector('.carousel');
     const slides = document.querySelectorAll('.carousel img');
 
+    function updateCenterImage() {
+        slides.forEach((img, index) => {
+            img.classList.remove('center');
+            if (index === currentIndex) {
+                img.classList.add('center');
+            }
+        });
+    }
+
     function showSlide(index) {
         const slideWidth = slides[0].clientWidth;
         carousel.style.transform = `translateX(${-slideWidth * index}px)`;
+        updateCenterImage();
     }
 
     function nextSlide() {
@@ -215,6 +201,7 @@
     }
 
     window.addEventListener('resize', () => showSlide(currentIndex));
+    updateCenterImage(); // Initialize center image on load
 </script>
 
 </body>
