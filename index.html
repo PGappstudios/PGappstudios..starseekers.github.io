@@ -60,44 +60,18 @@
             margin: 0.5rem 0;
         }
 
-        /* Carousel Section */
-        .carousel-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.6);
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 images per row */
+            gap: 15px; /* Space between images */
+            margin-top: 20px;
         }
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel img {
-            width: 125%; /* Increased by 25% */
-            flex-shrink: 0;
+        .image-grid img {
+            width: 100%;
             height: auto;
             border-radius: 10px;
-        }
-        .carousel-buttons {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-        .carousel-buttons button {
-            background-color: rgba(0, 0, 0, 0.7);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .carousel-buttons button:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
         }
 
         /* Links and Email */
@@ -152,28 +126,22 @@
     </ul>
 
     <h2>App Screenshots</h2>
-    <div class="carousel-container">
-        <div class="carousel">
-            <img src="1.jpg" alt="Screenshot 1">
-            <img src="2.jpg" alt="Screenshot 2">
-            <img src="3.jpg" alt="Screenshot 3">
-            <img src="4.jpg" alt="Screenshot 4">
-            <img src="5.jpg" alt="Screenshot 5">
-            <img src="6.jpg" alt="Screenshot 6">
-            <img src="7.jpg" alt="Screenshot 7">
-            <img src="8.jpg" alt="Screenshot 8">
-            <img src="89.jpg" alt="Screenshot 9">
-            <img src="4544444.jpg" alt="Screenshot 10">
-            <img src="45646.jpg" alt="Screenshot 11">
-            <img src="5646.jpg" alt="Screenshot 12">
-            <img src="56565.jpg" alt="Screenshot 13">
-            <img src="6456.jpg" alt="Screenshot 14">
-            <img src="787.jpg" alt="Screenshot 15">
-        </div>
-        <div class="carousel-buttons">
-            <button onclick="prevSlide()">&#10094;</button>
-            <button onclick="nextSlide()">&#10095;</button>
-        </div>
+    <div class="image-grid">
+        <img src="1.jpg" alt="Screenshot 1">
+        <img src="2.jpg" alt="Screenshot 2">
+        <img src="3.jpg" alt="Screenshot 3">
+        <img src="4.jpg" alt="Screenshot 4">
+        <img src="5.jpg" alt="Screenshot 5">
+        <img src="6.jpg" alt="Screenshot 6">
+        <img src="7.jpg" alt="Screenshot 7">
+        <img src="8.jpg" alt="Screenshot 8">
+        <img src="89.jpg" alt="Screenshot 9">
+        <img src="4544444.jpg" alt="Screenshot 10">
+        <img src="45646.jpg" alt="Screenshot 11">
+        <img src="5646.jpg" alt="Screenshot 12">
+        <img src="56565.jpg" alt="Screenshot 13">
+        <img src="6456.jpg" alt="Screenshot 14">
+        <img src="787.jpg" alt="Screenshot 15">
     </div>
 
     <h2>Contact Us</h2>
@@ -194,30 +162,6 @@
     <p>&copy; 2024 Star Seekers. All rights reserved.</p>
     <p>Designed with 💫 by Star Seekers Team</p>
 </footer>
-
-<script>
-    let currentIndex = 0;
-    const carousel = document.querySelector('.carousel');
-    const slides = document.querySelectorAll('.carousel img');
-
-    function showSlide(index) {
-        const slideWidth = carousel.clientWidth;
-        carousel.style.transform = `translateX(${-slideWidth * index}px)`;
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
-    }
-
-    window.addEventListener('resize', () => showSlide(currentIndex));
-    showSlide(currentIndex); // Initialize carousel
-</script>
 
 </body>
 </html>
