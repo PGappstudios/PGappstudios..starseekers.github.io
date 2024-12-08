@@ -3,132 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Seekers</title>
+    <title>Star Seekers - App Screenshots</title>
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            background-image: url('back.png'); /* Background image file */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            background-color: rgba(22, 33, 62, 0.9);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
-        }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-        header p {
-            font-size: 1.5rem;
-            color: #4ecdc4; /* Accent color */
-        }
-
-        /* Main Content */
-        main {
-            max-width: 900px;
+        .carousel-container {
+            max-width: 800px;
             margin: 2rem auto;
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.85);
+            position: relative;
+            overflow: hidden;
             border-radius: 10px;
             box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.6);
         }
-        main h2 {
-            color: #4ecdc4;
-            margin-bottom: 1rem;
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
-        main p, main ul {
-            margin: 1rem 0;
+        .carousel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
-        main ul {
-            padding-left: 1.5rem;
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
         }
-        main ul li {
-            margin: 0.5rem 0;
+        .carousel-buttons button {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
         }
-
-        /* Links and Email */
-        a {
-            color: #4ecdc4;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #77e8d5;
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            background-color: rgba(22, 33, 62, 0.9);
-            padding: 1.5rem;
-            text-align: center;
-            margin-top: 2rem;
-            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.6);
-        }
-        footer p {
-            margin: 0.5rem 0;
-        }
-        footer a {
-            color: #4ecdc4;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #77e8d5;
+        .carousel-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Star Seekers</h1>
-    <p>Your gateway to the stars! Explore, play, and learn.</p>
-</header>
+<div class="carousel-container">
+    <div class="carousel">
+        <img src="1.jpg" alt="Screenshot 1">
+        <img src="2.jpg" alt="Screenshot 2">
+        <img src="3.jpg" alt="Screenshot 3">
+        <img src="4.jpg" alt="Screenshot 4">
+        <img src="5.jpg" alt="Screenshot 5">
+    </div>
+    <div class="carousel-buttons">
+        <button onclick="prevSlide()">&#10094;</button>
+        <button onclick="nextSlide()">&#10095;</button>
+    </div>
+</div>
 
-<main>
-    <h2>About the App</h2>
-    <p>
-        Welcome to <strong>Star Seekers</strong>, a multi-mini-game app designed to inspire curiosity and fun! Dive into the wonders of the universe with interactive star maps, challenging puzzles, and educational content. Whether you're a stargazing enthusiast or just looking for some cosmic fun, Star Seekers has something for everyone.
-    </p>
+<script>
+    let currentIndex = 0;
+    const carousel = document.querySelector('.carousel');
+    const slides = document.querySelectorAll('.carousel img');
 
-    <h2>Features</h2>
-    <ul>
-        <li>🌌 Explore constellations with a detailed star atlas.</li>
-        <li>🧩 Play engaging mini-games and test your skills.</li>
-        <li>📚 Learn fascinating facts about the universe.</li>
-    </ul>
+    function showSlide(index) {
+        const slideWidth = slides[0].clientWidth;
+        carousel.style.transform = `translateX(${-slideWidth * index}px)`;
+    }
 
-    <h2>Contact Us</h2>
-    <p>
-        📧 Email: <a href="mailto:pgmetastudios@gmail.com">pgmetastudios@gmail.com</a>
-    </p>
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
 
-    <h2>Links</h2>
-    <p>
-        <a href="https://www.termsfeed.com/live/1a4f410f-4566-4032-a4c1-222264b4b8e5" target="_blank">Terms of Service</a>
-    </p>
-    <p>
-        <a href="https://app.websitepolicies.com/policies/view/x5olsnwk" target="_blank">Privacy Policy</a>
-    </p>
-</main>
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    }
 
-<footer>
-    <p>&copy; 2024 Star Seekers. All rights reserved.</p>
-    <p>Designed with 💫 by Star Seekers Team</p>
-</footer>
+    // Adjust carousel on window resize
+    window.addEventListener('resize', () => showSlide(currentIndex));
+</script>
 
 </body>
 </html>
